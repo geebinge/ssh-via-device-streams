@@ -1,5 +1,9 @@
 # ssh-via-device-streams
-HowDo setup ssh connectivity up to 100 sessions to an IoT Device via IoT-Hub and [Azure Device Streams](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-device-streams-overview){:target="_blank" rel="noopener"}
+HowDo setup ssh connectivity up to 100 sessions to an IoT Device via IoT-Hub and 
+
+<a href="https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-device-streams-overview" target="_blank">Azure Device Streams</a>
+
+[Azure Device Streams](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-device-streams-overview)
 
 
 ## create an IoT devices
