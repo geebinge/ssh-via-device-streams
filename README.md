@@ -1,14 +1,10 @@
 # ssh-via-device-streams
-HowDo setup ssh connectivity up to 100 sessions to an IoT Device via IoT-Hub and 
-
-<a href="https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-device-streams-overview" target="_blank">Azure Device Streams</a>
-
-[Azure Device Streams](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-device-streams-overview)
+HowDo setup ssh connectivity up to 100 sessions to an IoT Device via IoT-Hub and [Azure Device Streams](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-device-streams-overview)
 
 
 ## create an IoT devices
 
-You can today use this service, as long it is in preview only dedicated [IoT-Hub regions](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-device-streams-overview#regional-availability){:target="_blank" rel="noopener"}. Go to your IoT-Hub in the right region, and create a new device. If your device is already registered, you can use also the existing registration. If you are working with an IoT-Edge device, you need an additional registration, with a new device id, as a simple device. 
+You can today use this service, as long it is in preview only dedicated [IoT-Hub regions](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-device-streams-overview#regional-availability). Go to your IoT-Hub in the right region, and create a new device. If your device is already registered, you can use also the existing registration. If you are working with an IoT-Edge device, you need an additional registration, with a new device id, as a simple device. 
 
 For later, pls note somewhere the Primary or Secondary Connection String
 
