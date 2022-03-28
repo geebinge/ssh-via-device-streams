@@ -44,32 +44,37 @@ make -j 1
 ./iothub_client_c2d_streaming_proxy_sample
 ```
 
-now you are able connect with the 
+now you are able connect with the [client](#-setup-the-client-proxy)
 
+## to run it as a services 
 
-To run it as a services 
-
+```bash
 mkdir ~/bin 
 cp ./iothub_client_c2d_streaming_proxy_sample ~/bin/iot-ssh-client
-
 sudo vi /etc/systemd/system/iot-ssh-client.service
+```
+
+insert into /etc/systemd/system/iot-ssh-client.service
+
 
 	[Unit]
 	Description=IoT-ssh-Client
 	
 	[Service]
-	ExecStart=/home/demouser/bin/iot-ssh-client
+	ExecStart=/home/<youruserid>/bin/iot-ssh-client
 	
 	[Install]
 	WantedBy=multi-user.target
 
+to intall the demon run 
+
+```bash
 sudo systemctl daemon-reload
 sudo systemctl start iot-ssh-client.service
 sudo systemctl enable  iot-ssh-client.service
 systemctl status iot-ssh-client.service
-![image](https://user-images.githubusercontent.com/32458010/157073198-b0807b72-d5b4-403a-95a1-a5cf461935f2.png)
+```
 
-
-setup the 
+## setup the client proxy
 
 
