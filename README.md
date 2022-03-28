@@ -77,4 +77,33 @@ systemctl status iot-ssh-client.service
 
 ## setup the client proxy
 
+to connect to the device via port 22, you have to run a small serivce on your client who waits for a connection reqeust on your localhost. The serice can run with  node.js or wiht C#, and connect with the Serive SDK via the IoT Hub to your devices. 
+
+This section decripe who to do this with node.js. As a first step download and install the latest verion of https://nodejs.org/en/. 
+
+As a next step install our [Azure IoT service SDK for Node.js](https://github.com/Azure/azure-iot-sdk-node/blob/main/service/readme.md)
+
+`npm install azure-iothub` to get the latest version.
+
+download the [tcp_streaming_proxy.js](https://github.com/Azure/azure-iot-sdk-node/blob/streams-preview/service/samples/tcp_streaming_proxy.js) and store it where ever you like. 
+
+go to your IoT Hub an choose in the menue "Shared access policies" and choose below "Manage shared access policies" the "service" Policy Name and copy the primary connection string. 
+
+create a small skript like `open_proxy.cmd`
+
+	SET IOTHUB_CONNECTION_STRING=<your service primary connection string> 
+	SET STREAMING_TARGET_DEVICE=<the devices id from the device you like to connect> 
+	SET PROXY_PORT=<choose a port, what ever you like e.g. 2225> 
+
+	node <path2tcp_streaming_proxy.js>\tcp_streaming_proxy.js
+
+When you start your `open_proxy.cmd` this will open the PROXY_PORT on your local machine what you can than access with [putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html), or what every ssh client you like. 
+
+
+
+
+
+
+
+
 
