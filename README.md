@@ -2,7 +2,7 @@
 HowDo setup ssh connectivity up to 100 sessions to an IoT Device via IoT-Hub and [Azure Device Streams](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-device-streams-overview). 
 
 
-## create an IoT devices
+## create an IoT device
 
 You can today use this service, as long it is in preview only dedicated [IoT-Hub regions](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-device-streams-overview#regional-availability). Go to your IoT-Hub in the right region, and create a new device. If your device is already registered, you can use also the existing registration. If you are working with an IoT-Edge device, you need an additional registration, with a new device id, as a simple device. 
 
@@ -33,7 +33,7 @@ go to line 70 and edit
 ```cpp 
 static const char* connectionString = "<device connection string>";
 ```
-and update this with your Primary Connection String you have noted in section ["create an IoT devices"](#create-an-IoT-devices)
+and update this with your Primary Connection String you have noted in section ["create an IoT device"](#create-an-IoT-device)
 
 ```bash
 cd ~/azure-iot-sdk-c/cmake/iothub_client/samples/iothub_client_c2d_streaming_proxy_sample
@@ -74,20 +74,20 @@ systemctl status iot-ssh-client.service
 
 ## setup the client proxy
 
-to connect to the device via port 22, you have to run a small serivce on your local machine. The serice can run with  node.js or wiht C#, and connect with the Serive SDK via the IoT Hub to your devices. 
+to connect to the device via port 22, you have to run a small serivce on your local machine. The serice can run with  node.js or wiht C#, and connect with the Serive SDK via the IoT Hub to your device. 
 
 This section decripe who to do this with node.js. As a first step download and install the latest verion of https://nodejs.org. 
 
 As a next step install our [Azure IoT service SDK for Node.js](https://github.com/Azure/azure-iot-sdk-node/blob/main/service/readme.md) with `npm install azure-iothub` to get the latest version.
 
-download the [devices streams service package](https://github.com/geebinge/ssh-via-device-streams/blob/main/device-streams-service/device-streams-service.zip) and extract it where ever you like.
+download the [device streams service package](https://github.com/geebinge/ssh-via-device-streams/blob/main/device-streams-service/device-streams-service.zip) and extract it where ever you like.
 
 go to your IoT Hub an choose in the menue "Shared access policies" and choose below "Manage shared access policies" the "service" Policy Name and copy the primary connection string. 
 
 create a small skript like `open_proxy.cmd`
 
 	SET IOTHUB_CONNECTION_STRING=<your service primary connection string> 
-	SET STREAMING_TARGET_DEVICE=<the devices id from the device you like to connect> 
+	SET STREAMING_TARGET_DEVICE=<the device id from the device you like to connect> 
 	SET PROXY_PORT=<choose a port, what ever you like e.g. 2225> 
 
 	node <path2proxy.js>\proxy.js
