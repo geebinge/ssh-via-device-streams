@@ -80,7 +80,7 @@ This section decripe who to do this with node.js. As a first step download and i
 
 As a next step install our [Azure IoT service SDK for Node.js](https://github.com/Azure/azure-iot-sdk-node/blob/main/service/readme.md) with `npm install azure-iothub` to get the latest version.
 
-download the [tcp_streaming_proxy.js](https://raw.githubusercontent.com/Azure/azure-iot-sdk-node/streams-preview/service/samples/tcp_streaming_proxy.js) and store it where ever you like. 
+download the [devices streams service package](https://github.com/geebinge/ssh-via-device-streams/blob/main/device-streams-service/device-streams-service.zip) and extract it where ever you like.
 
 go to your IoT Hub an choose in the menue "Shared access policies" and choose below "Manage shared access policies" the "service" Policy Name and copy the primary connection string. 
 
@@ -90,7 +90,7 @@ create a small skript like `open_proxy.cmd`
 	SET STREAMING_TARGET_DEVICE=<the devices id from the device you like to connect> 
 	SET PROXY_PORT=<choose a port, what ever you like e.g. 2225> 
 
-	node <path2tcp_streaming_proxy.js>\tcp_streaming_proxy.js
+	node <path2proxy.js>\proxy.js
 
 When you start your `open_proxy.cmd` this will open the PROXY_PORT on your local machine what you can than access with [putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html), or what every ssh client you like. 
 
