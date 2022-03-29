@@ -21,7 +21,17 @@ git submodule update --init
 mkdir cmake
 cd cmake
 
-cmake ..
+# in case OpenSSL lib is missing. 
+apt-get install libssl-dev 
+
+# in case curl lib is missing. 
+apt-get install libcurl4-openssl-dev
+
+cmake ..  
+
+#in case of "uuid/uuid.h: No such file or directory"
+apt-get install uuid-dev
+
 make -j 1 
 
 cd ~/azure-iot-sdk-c/iothub_client/samples/iothub_client_c2d_streaming_proxy_sample
@@ -29,9 +39,9 @@ vi iothub_client_c2d_streaming_proxy_sample.c
 
 ```
 
-go to line 70 and edit 
+go to line 70 (in vi you can do this by pres `:70`) and edit 
 ```cpp 
-static const char* connectionString = "<device connection string>";
+static const char* connectionString = "[device connection string]";
 ```
 and update this with your Primary Connection String you have noted in section ["create an IoT device"](#create-an-IoT-device)
 
