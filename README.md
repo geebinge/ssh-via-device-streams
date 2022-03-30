@@ -1,12 +1,12 @@
 # ssh-via-device-streams
-How-to setup ssh connectivity up to 100 sessions to an IoT Device via IoT-Hub and [Azure Device Streams](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-device-streams-overview). 
+How-to setup ssh connectivity for up to 100 sessions on an IoT Device via IoT-Hub and [Azure Device Streams](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-device-streams-overview). 
 
 
 ## create an IoT device
 
-You can today use this service, as long it is in preview only dedicated [IoT-Hub regions](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-device-streams-overview#regional-availability). Go to your IoT-Hub in the right region, and create a new device. If your device is already registered, you can use also the existing registration. If you are working with an IoT-Edge device, you need an additional registration, with a new device id, as a simple device. 
+You can use this service today for IoT Hubs in regions that support this preview feature [IoT-Hub regions](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-device-streams-overview#regional-availability). Go to your IoT-Hub in a supporting region and create a new device. If your device is already registered, you can use this existing registration. If you are working with an IoT-Edge device, you need to create an additional registration, with a new device id as a simple device. 
 
-For later, pls note somewhere the Primary Connection String.
+Copy the Primary Connection String and save it somewhere, you will need it later.
 
 ## installation on a Linux device
 
@@ -53,7 +53,7 @@ make -j 1
 
 now you are able to connect with the [client](#-setup-the-client-proxy) for test purpose
 
-## if you like to run it as a services 
+## if you like to run it as a service
 
 ```bash
 mkdir ~/bin 
@@ -73,7 +73,7 @@ insert into `/etc/systemd/system/iot-ssh-client.service`
 	[Install]
 	WantedBy=multi-user.target
 
-and run the following steps to install the demon
+and run the following steps to install the daemon
 
 ```bash
 sudo systemctl daemon-reload
@@ -84,13 +84,13 @@ systemctl status iot-ssh-client.service
 
 ## setup the client proxy
 
-to connect to your IoT device via port 22, you have to run a small service on your local machine or a machine inside your local network. Microsoft provided some example code for node.js and C#. With that, you are able to connect with the Service SDK via the IoT Hub to your device. 
+To connect to your IoT device via port 22, you need to run a service on your local machine or a machine inside your local network. Microsoft have provided some example code for node.js and C#. With this, you connect using the Service SDK via the IoT Hub to your device. 
 
 This section describes how to do this with node.js. As a first step download and install the latest version of https://nodejs.org, or install nodejs with your Linux installer. 
 
-download the [device streams service package](https://github.com/geebinge/ssh-via-device-streams/blob/main/device-streams-service/device-streams-service.zip) and extract it where ever you like. 
+Download the [device streams service package](https://github.com/geebinge/ssh-via-device-streams/blob/main/device-streams-service/device-streams-service.zip) and extract it to a location of your choice.
 
-go to your IoT Hub and choose in the left menu "Shared access policies" in the "Security settings" section and choose below "Manage shared access policies" the "service" Policy Name and copy the primary connection string. 
+Go to your IoT Hub in the Azure portal and choose in the left menu "Shared access policies" in the "Security settings" section. Then choose "Manage shared access policies" and copy the primary connection string for the "service" Policy Name.
 
 ### for Windows 
 
@@ -114,9 +114,9 @@ create a small script like `open_proxy.sh`
 
 	node <path2proxy.js>/proxy.js
 
-When you start your `open_proxy.cmd` or `open_proxy.sh` this will open the PROXY_PORT on this machine which you can then access with [putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html), or what every ssh client you like. 
+When you start your `open_proxy.cmd` or `open_proxy.sh` this will open the PROXY_PORT on this machine which you can then access with [putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html), or whichever ssh client you like. 
 
-if you using Linux, you may be considered running the local proxy also as a [service](#if-you-like-to-run-it-as-a-services) in a similar way.
+If you using Linux, you may also run the local proxy as a [service](#if-you-like-to-run-it-as-a-services).
 
 
 
