@@ -1,5 +1,5 @@
 # ssh-via-device-streams
-HowDo setup ssh connectivity up to 100 sessions to an IoT Device via IoT-Hub and [Azure Device Streams](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-device-streams-overview). 
+How-to setup ssh connectivity up to 100 sessions to an IoT Device via IoT-Hub and [Azure Device Streams](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-device-streams-overview). 
 
 
 ## create an IoT device
@@ -8,9 +8,9 @@ You can today use this service, as long it is in preview only dedicated [IoT-Hub
 
 For later, pls note somewhere the Primary Connection String.
 
-## installation on a linux client. 
+## installation on a Linux device
 
-Produce with the following steps on your Linux device 
+Proceed with the following steps on your Linux device 
 
 ```bash
 git clone -b DeviceStreaming-PersistentProxy https://github.com/geebinge/azure-iot-sdk-c.git
@@ -51,7 +51,7 @@ make -j 1
 ./iothub_client_c2d_streaming_proxy_sample
 ```
 
-now you are able connect with the [client](#-setup-the-client-proxy)
+now you are able to connect with the [client](#-setup-the-client-proxy) for test purpose
 
 ## if you like to run it as a services 
 
@@ -73,7 +73,7 @@ insert into `/etc/systemd/system/iot-ssh-client.service`
 	[Install]
 	WantedBy=multi-user.target
 
-and run the following steps to intall the demon
+and run the following steps to install the demon
 
 ```bash
 sudo systemctl daemon-reload
@@ -84,17 +84,17 @@ systemctl status iot-ssh-client.service
 
 ## setup the client proxy
 
-to connect to the device via port 22, you have to run a small serivce on your local machine. The serice can run with  node.js or wiht C#, and connect with the Serive SDK via the IoT Hub to your device. 
+to connect to your IoT device via port 22, you have to run a small service on your local machine or a machine inside your local network. Microsoft provided some example code for node.js and C#. With that, you are able to connect with the Service SDK via the IoT Hub to your device. 
 
-This section decripe who to do this with node.js. As a first step download and install the latest verion of https://nodejs.org, or install nodejs with your linux installer. 
+This section describes how to do this with node.js. As a first step download and install the latest version of https://nodejs.org, or install nodejs with your Linux installer. 
 
 download the [device streams service package](https://github.com/geebinge/ssh-via-device-streams/blob/main/device-streams-service/device-streams-service.zip) and extract it where ever you like. 
 
-go to your IoT Hub an choose in the menue "Shared access policies" and choose below "Manage shared access policies" the "service" Policy Name and copy the primary connection string. 
+go to your IoT Hub and choose in the left menu "Shared access policies" in the "Security settings" section and choose below "Manage shared access policies" the "service" Policy Name and copy the primary connection string. 
 
 ### for Windows 
 
-create a small skript like `open_proxy.cmd`
+create a small script like `open_proxy.cmd`
 
 	SET IOTHUB_CONNECTION_STRING=<your service primary connection string> 
 	SET STREAMING_TARGET_DEVICE=<the device id from the device you like to connect> 
@@ -104,7 +104,7 @@ create a small skript like `open_proxy.cmd`
 
 ### for Linux 
 
-create a small skript like `open_proxy.sh`
+create a small script like `open_proxy.sh`
 
 	#!/bin/bash 
 	
@@ -114,9 +114,9 @@ create a small skript like `open_proxy.sh`
 
 	node <path2proxy.js>/proxy.js
 
-When you start your `open_proxy.cmd` or `open_proxy.sh` this will open the PROXY_PORT on your local machine what you can than access with [putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html), or what every ssh client you like. 
+When you start your `open_proxy.cmd` or `open_proxy.sh` this will open the PROXY_PORT on this machine which you can then access with [putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html), or what every ssh client you like. 
 
-if you using Linux, you maybe consider to run the local proxy also as a [service](#if-you-like-to-run-it-as-a-services). 
+if you using Linux, you may be considered running the local proxy also as a [service](#if-you-like-to-run-it-as-a-services) in a similar way.
 
 
 
