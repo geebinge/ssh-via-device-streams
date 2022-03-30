@@ -51,7 +51,7 @@ make -j 1
 ./iothub_client_c2d_streaming_proxy_sample
 ```
 
-now you are able to connect with the [client](#-setup-the-client-proxy) for test purpose
+now you are able to connect with the [client](#setup-the-client-proxy) for test purpose
 
 ## if you like to run it as a service
 
@@ -116,7 +116,7 @@ create a small script like `open_proxy.sh`
 
 When you start your `open_proxy.cmd` or `open_proxy.sh` this will open the PROXY_PORT on this machine which you can then access with [putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html), or whichever ssh client you like. 
 
-If you using Linux, you may also run the local proxy as a [service](#if-you-like-to-run-it-as-a-services).
+If you using Linux, you may also run the local proxy as a [service](#if-you-like-to-run-it-as-a-service).
 
 
 
